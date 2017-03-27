@@ -1,9 +1,12 @@
 package com.example.use.drivers;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,7 +19,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity{
 
     public static String LOG_TAG = "my_log";
     // то в чем будем хранить данные пока не передадим адаптеру
@@ -25,29 +28,48 @@ public class MainActivity extends Activity {
     private MainActivityListAdapter adapter;
     // List view
     private ListView lv;
+    // drawer layout
+    private ListView mDrawerListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDrawerListView = (ListView)findViewById(R.id.left_drawer);
+
+        //mDrawerListView.
+
         new ParseTask().execute();
         // определение данных
         lv = (ListView) findViewById(R.id.listView);
         adapter = new MainActivityListAdapter(this, R.layout.item, titleList);
+        //lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent(getApplicationContext(), WaybillData.class);
+                intent.putExtra(WaybillData.EXTRA_WAYBILL, titleList.get(i));
+                startActivity(intent);
+            }
+        });
     }
+
+
 
     private class ParseTask extends AsyncTask<Void, Void, String> {
 
         HttpURLConnection urlConnection = null;
         BufferedReader reader = null;
         String resultJson = "";
-        ArrayAdapter mAdapter;
 
         @Override
         protected String doInBackground(Void... params) {
             // получаем данные с внешнего ресурса
+            String ip = "192.168.199.7";
+            ip = "109.173.90.94";
             try {
-                URL url = new URL("http://192.168.199.7/MainActivity/hs/MainActivity/list");
+                URL url = new URL("http://" +ip + "/MainActivity/hs/MainActivity/list");
 
                 urlConnection = (HttpURLConnection) url.openConnection();
                 urlConnection.setRequestMethod("GET");
@@ -82,8 +104,14 @@ public class MainActivity extends Activity {
                 // перебираем и выводим
                 for (int i = 0; i < documents.length(); i++) {
                     JSONObject document = documents.getJSONObject(i);
+                    ArrayList<GoodTable> goodTables = new ArrayList<>();
+                    JSONArray goods = document.getJSONArray("ТаблицаТоваров");
+                    for (int k = 0; k < goods.length(); k++) {
+                        JSONObject good = goods.getJSONObject(k);
+                        goodTables.add(new GoodTable(good.getString("Наименование"), good.getString("Количество")));
+                    }
                     titleList.add(new Waybill(document.getString("Дата"), document.getString("Номер"),
-                            document.getString("Транспорт"), document.getString("Водитель")));
+                            document.getString("Транспорт"), document.getString("Водитель"), goodTables));
                 }
                 lv.setAdapter(adapter);
             } catch (JSONException e) {

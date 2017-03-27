@@ -4,6 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
 
     <application
             android:allowBackup="true"
@@ -17,6 +18,14 @@
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+        </activity>
+        <activity android:name=".WaybillData">
+        </activity>
+        <activity android:name=".Realization">
+        </activity>
+        <activity android:name=".Empowerment">
+        </activity>
+        <activity android:name=".Refund">
         </activity>
     </application>
 
