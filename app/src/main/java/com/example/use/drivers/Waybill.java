@@ -9,25 +9,25 @@ import java.util.ArrayList;
  * Created by use on 24.03.17.
  */
 public class Waybill implements Parcelable{
-    private String data;
-    private String number;
-    private String car;
-    private String driver;
+    private String data1; // ЮрАдрес
+    private String data2; // ЮрЛицо
+    private String data3; // НомерДокумента
+    private String data4; // ВидДокумента
     private ArrayList<GoodTable> goodTables = new ArrayList<>();
 
-    public Waybill(String data, String number, String car, String driver, ArrayList<GoodTable> goodTables) {
-        this.data = data;
-        this.number = number;
-        this.car = car;
-        this.driver = driver;
+    public Waybill(String data1, String data2, String data3, String data4, ArrayList<GoodTable> goodTables) {
+        this.data1 = data1;
+        this.data2 = data2;
+        this.data3 = data3;
+        this.data4 = data4;
         this.goodTables = goodTables;
     }
 
     public Waybill(Parcel parcel){
-        data = parcel.readString();
-        number = parcel.readString();
-        car = parcel.readString();
-        driver = parcel.readString();
+        data1 = parcel.readString();
+        data2 = parcel.readString();
+        data3 = parcel.readString();
+        data4 = parcel.readString();
         int count = parcel.readInt();
         for (int i = 0; i < count; i++){
             String name = parcel.readString();
@@ -37,19 +37,19 @@ public class Waybill implements Parcelable{
     }
 
     public String getData() {
-        return data.substring(0,10);
+        return data1;
     }
 
     public String getNumber() {
-        return number;
+        return data2;
     }
 
     public String getCar() {
-        return car;
+        return data3;
     }
 
     public String getDriver() {
-        return driver;
+        return data4;
     }
 
     public ArrayList<GoodTable> getGoodTables() {
@@ -63,10 +63,10 @@ public class Waybill implements Parcelable{
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeString(data);
-        parcel.writeString(number);
-        parcel.writeString(car);
-        parcel.writeString(driver);
+        parcel.writeString(data1);
+        parcel.writeString(data2);
+        parcel.writeString(data3);
+        parcel.writeString(data4);
         parcel.writeInt(goodTables.size());
         //parcel.writeList(goodTables);
         for (GoodTable element : goodTables){

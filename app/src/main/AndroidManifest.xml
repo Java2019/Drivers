@@ -12,7 +12,7 @@
             android:label="@string/app_name"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -26,6 +26,10 @@
         <activity android:name=".Empowerment">
         </activity>
         <activity android:name=".Refund">
+        </activity>
+        <activity android:name=".PrefActivity">
+        </activity>
+        <activity android:name=".MainActivity">
         </activity>
     </application>
 

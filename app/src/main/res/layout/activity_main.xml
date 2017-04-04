@@ -3,30 +3,55 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     <!-- The main content view -->
     <FrameLayout
             android:id="@+id/content_frame"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
         <ListView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/listView"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true"
                 android:headerDividersEnabled="false"/>
     </FrameLayout>
-
+    <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_gravity="start"
+            android:background="#FFFCFCFC">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:orientation="vertical"
+                android:background="#e3f3f9">
+        <ImageView
+                android:layout_width="240dp"
+                android:layout_height="120dp"
+                android:src="@drawable/logo"
+                android:background="#e3f3f9"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Управление водителями"
+                android:textSize="20dp"
+                android:gravity="center_vertical|center_horizontal"/>
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:text="Версия: 1.0.0."
+                android:gravity="center_vertical|center_horizontal"
+                android:textSize="20dp"/>
+        </LinearLayout>
     <!-- The navigation drawer -->
     <ListView
             android:id="@+id/left_drawer"
-            android:layout_width="240dp"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="#111"
             android:choiceMode="singleChoice"
             android:divider="@android:color/transparent"
             android:dividerHeight="0dp"/>
-
+    </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
