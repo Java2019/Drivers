@@ -13,11 +13,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
+import android.widget.*;
 import android.widget.AdapterView.OnItemClickListener;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
 import fragments.OneFragment;
 import fragments.TwoFragment;
 
@@ -39,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -100,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
+
+        imageButton = (ImageButton)findViewById(R.id.imageButton);
+        imageButton.setVisibility(View.INVISIBLE);
 
      }
     private void setupViewPager(ViewPager viewPager) {

@@ -13,10 +13,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
-import android.widget.ListView;
+import android.widget.*;
 import fragments.Empowerment;
 import fragments.Realization;
 import fragments.Refund;
@@ -38,6 +35,7 @@ public class MainTab extends AppCompatActivity {
     public SharedPreferences prefs;
     private String login = "";
     private Intent intent;
+    private ImageButton imageButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +96,18 @@ public class MainTab extends AppCompatActivity {
                 finish();
             }
         });
+
+        imageButton = (ImageButton) findViewById(R.id.imageButton);
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "позвонить", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        });
+
+
     }
 
     private void setupViewPager(ViewPager viewPager) {
