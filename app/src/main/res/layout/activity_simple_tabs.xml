@@ -48,7 +48,8 @@
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         android:background="#ffffff"
-                        android:src="@drawable/call" android:id="@+id/imageButton"/>
+                        android:src="@drawable/call"
+                        android:id="@+id/imageButton"/>
         </LinearLayout>
     </FrameLayout>
     <LinearLayout

@@ -9,7 +9,13 @@
         <item>Передать данные</item>
         <item>Выход</item>
     </string-array>
+    <string-array name="dialog_items">
+        <item>Тоговый представитель</item>
+        <item>Торговая точка</item>
+        <item>Диспетчер</item>
+    </string-array>
     <string name="pref_sync">sdfsdf</string>
     <string name="pref_sync_summ">efaffa</string>
     <string name="pref_syncConnectionType">kj;lkj</string>
+    <string name="items">ПОЗВОНИТЬ</string>
 </resources>

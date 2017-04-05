@@ -1,7 +1,11 @@
 package com.example.use.drivers;
 
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.DialogInterface.OnClickListener;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
@@ -10,6 +14,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -36,7 +41,46 @@ public class MainTab extends AppCompatActivity {
     private String login = "";
     private Intent intent;
     private ImageButton imageButton;
+    final int DIALOG = 1;
 
+    @Override
+    protected void onPrepareDialog(int id, Dialog dialog) {
+        super.onPrepareDialog(id, dialog);
+        AlertDialog aDialog = (AlertDialog) dialog;
+        ListAdapter lAdapter = aDialog.getListView().getAdapter();
+        if (lAdapter instanceof BaseAdapter) {
+            BaseAdapter bAdapter = (BaseAdapter) lAdapter;
+            bAdapter.notifyDataSetChanged();
+        }
+    }
+
+    OnClickListener myClickListener = new OnClickListener() {
+        public void onClick(DialogInterface dialog, int which) {
+            String tel = "";
+             switch (which){
+                case 0: // тоговый представитель
+                    tel = "123456";
+                    break;
+                case 1: // торговая точка
+                    tel = "123456";
+                    break;
+                case 2: // диспетчер
+                    tel = "123456";
+                    break;
+            }
+            intent = new Intent();
+            intent.setData(Uri.parse("tel:" + tel));
+            intent.setAction(Intent.ACTION_CALL);
+            startActivity(intent);
+        }
+    };
+
+    protected Dialog onCreateDialog(int id) {
+        AlertDialog.Builder adb = new AlertDialog.Builder(this);
+        //adb.setTitle(R.string.items);
+        adb.setItems(R.array.dialog_items, myClickListener);
+        return adb.create();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -101,13 +145,9 @@ public class MainTab extends AppCompatActivity {
         imageButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "позвонить", Toast.LENGTH_SHORT);
-                toast.show();
+                showDialog(DIALOG);
             }
         });
-
-
     }
 
     private void setupViewPager(ViewPager viewPager) {
