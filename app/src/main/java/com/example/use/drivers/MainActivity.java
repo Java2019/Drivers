@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -74,6 +75,16 @@ public class MainActivity extends Activity{
                         finish();
                         break;
                 }
+            }
+        });
+
+        LinearLayout layout = (LinearLayout)findViewById(R.id.layout_logo);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 
