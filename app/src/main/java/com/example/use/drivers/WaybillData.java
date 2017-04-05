@@ -7,6 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import fragments.Empowerment;
+import fragments.Realization;
+import fragments.Refund;
 
 public class WaybillData extends Activity {
 

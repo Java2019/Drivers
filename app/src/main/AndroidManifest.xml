@@ -11,7 +11,7 @@
             android:icon="@drawable/logo"
             android:label="@string/app_name"
             android:supportsRtl="true"
-            android:theme="@style/MyMaterialTheme">
+            android:theme="@style/MyMaterialTheme.Base">
         <activity android:name=".Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -21,11 +21,11 @@
         </activity>
         <activity android:name=".WaybillData">
         </activity>
-        <activity android:name=".Realization">
+        <activity android:name="fragments.Realization">
         </activity>
-        <activity android:name=".Empowerment">
+        <activity android:name="fragments.Empowerment">
         </activity>
-        <activity android:name=".Refund">
+        <activity android:name="fragments.Refund">
         </activity>
         <activity android:name=".PrefActivity">
         </activity>

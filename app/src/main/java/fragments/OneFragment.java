@@ -11,7 +11,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import com.example.use.drivers.*;
@@ -70,23 +69,9 @@ public class OneFragment extends Fragment{
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent intent = new Intent(getContext(), WaybillData.class);
-                intent.putExtra(WaybillData.EXTRA_WAYBILL, titleList.get(i));
+                Intent intent = new Intent(getContext(), MainTab.class);
+                //intent.putExtra(WaybillData.EXTRA_WAYBILL, titleList.get(i));
                 startActivity(intent);
-            }
-        });
-        lv.setOnScrollListener(new AbsListView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(AbsListView absListView, int i) {
-            }
-
-            @Override
-            public void onScroll(AbsListView absListView, int i, int i1, int i2) {
-                try{
-                    getActivity().getActionBar().hide();
-                }catch (Exception e){
-
-                }
             }
         });
         return myFragmentView;

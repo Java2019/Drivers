@@ -1,28 +1,41 @@
-package com.example.use.drivers;
+package fragments;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.*;
+import com.example.use.drivers.GoodTable;
+import com.example.use.drivers.R;
+import com.example.use.drivers.Waybill;
 
 import java.util.ArrayList;
 
-public class Refund extends AppCompatActivity {
+public class Refund extends Fragment {
 
     public static final String EXTRA_GOOD = "extra_good";
     private ArrayList<GoodTable> goodTable = new ArrayList<>();
     private Waybill waybill;
     private ListView lv;
 
+    public Refund() {
+
+    }
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.activity_realization, container, false);
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refund);
-        setTitle("Возврат товаров");
-        waybill = (Waybill)getIntent().getParcelableExtra(EXTRA_GOOD);
+
+        /*waybill = (Waybill)getIntent().getParcelableExtra(EXTRA_GOOD);
         goodTable = waybill.getGoodTables();
         lv = (ListView)findViewById(R.id.listView3);
         MyAdapter adapter = new MyAdapter(this, R.layout.item_good);
@@ -42,7 +55,7 @@ public class Refund extends AppCompatActivity {
                 case R.id.radio_6:
                     break;
             }
-        }
+        }*/
     };
 
     private class MyAdapter extends BaseAdapter{

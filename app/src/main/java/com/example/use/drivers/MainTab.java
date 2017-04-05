@@ -1,15 +1,25 @@
 package com.example.use.drivers;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import fragments.OneFragment;
-import fragments.TwoFragment;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.ListView;
+import fragments.Empowerment;
+import fragments.Realization;
+import fragments.Refund;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,6 +31,13 @@ public class MainTab extends AppCompatActivity {
     private Toolbar toolbar;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    private ListView mDrawerListView;
+    private String[] mDrawerItem;
+    private DrawerLayout drawlayout;
+    public String pref_ip;
+    public SharedPreferences prefs;
+    private String login = "";
+    private Intent intent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,19 +46,65 @@ public class MainTab extends AppCompatActivity {
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        getSupportActionBar().hide();
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
         setupViewPager(viewPager);
 
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
+        prefs = PreferenceManager.getDefaultSharedPreferences(this);
+        pref_ip = prefs.getString("pref_ip", "");
+        login = prefs.getString("login", "");
+
+        drawlayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerListView = (ListView)findViewById(R.id.left_drawer);
+        mDrawerItem = getResources().getStringArray(R.array.drawer_items);
+        mDrawerListView.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_activated_1,
+                mDrawerItem));
+        mDrawerListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                drawlayout.closeDrawers();
+                switch (position){
+                    case 0:
+                        break;
+                    case 1:
+                        intent = new Intent(getApplicationContext(), PrefActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        break;
+                    case 3:
+                        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                        SharedPreferences.Editor editor = prefs.edit();
+                        editor.putString("login", "");
+                        editor.commit();
+                        intent = new Intent(getApplicationContext(), Splash.class);
+                        startActivity(intent);
+                        finish();
+                        break;
+                }
+            }
+        });
+
+        LinearLayout layout = (LinearLayout)findViewById(R.id.layout_logo);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new OneFragment(), "План");
-        adapter.addFrag(new TwoFragment(), "Выполнено");
+        adapter.addFrag(new Realization(), "Реализация");
+        adapter.addFrag(new Empowerment(), "Деньги");
+        adapter.addFrag(new Refund(), "Возврат");
         viewPager.setAdapter(adapter);
     }
 
