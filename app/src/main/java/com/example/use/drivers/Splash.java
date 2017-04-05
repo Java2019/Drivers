@@ -38,7 +38,7 @@ public class Splash extends Activity {
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
         login = prefs.getString("login", "");
         if (!login.isEmpty()){
-            Intent intent = new Intent(getApplicationContext(), MainTab.class);
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         }
@@ -131,7 +131,7 @@ public class Splash extends Activity {
                     editor.putString("login", login);
                     editor.commit();
 
-                    Intent intent = new Intent(getApplicationContext(), MainTab.class);
+                    Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(intent);
                     finish();
                 }else{

@@ -1,14 +1,14 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                xmlns:tools="http://schemas.android.com/tools"
+<FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/content_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ListView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="one"
-            android:textSize="40dp"
-            android:textStyle="bold"
-            android:layout_centerInParent="true"/>
-
-</RelativeLayout>
+                android:layout_height="wrap_content"
+                android:id="@+id/listView"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentStart="true"
+                android:headerDividersEnabled="false"/>
+</FrameLayout>
