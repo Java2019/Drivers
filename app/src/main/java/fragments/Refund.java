@@ -20,6 +20,7 @@ public class Refund extends Fragment {
     private ArrayList<GoodTable> goodTable = new ArrayList<>();
     private Waybill waybill;
     private ListView lv;
+    private View myFragmentView;
 
     public Refund() {
 
@@ -28,23 +29,29 @@ public class Refund extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_realization, container, false);
+        myFragmentView = inflater.inflate(R.layout.activity_refund, container, false);
+
+        goodTable = waybill.getGoodTables();
+        lv = (ListView)myFragmentView.findViewById(R.id.listView3);
+        MyAdapter adapter = new MyAdapter(getContext(), R.layout.item_good);
+        lv.setAdapter(adapter);
+
+        RadioButton radioButton1 = (RadioButton) myFragmentView.findViewById(R.id.radio_5);
+        radioButton1.setOnClickListener(radioButtonClickListener);
+        RadioButton radioButton2 = (RadioButton) myFragmentView.findViewById(R.id.radio_6);
+        radioButton2.setOnClickListener(radioButtonClickListener);
+
+        return myFragmentView;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        /*waybill = (Waybill)getIntent().getParcelableExtra(EXTRA_GOOD);
-        goodTable = waybill.getGoodTables();
-        lv = (ListView)findViewById(R.id.listView3);
-        MyAdapter adapter = new MyAdapter(this, R.layout.item_good);
-        lv.setAdapter(adapter);
-
-        RadioButton radioButton1 = (RadioButton) findViewById(R.id.radio_5);
-        radioButton1.setOnClickListener(radioButtonClickListener);
-        RadioButton radioButton2 = (RadioButton) findViewById(R.id.radio_6);
-        radioButton2.setOnClickListener(radioButtonClickListener);
+        Bundle bundle = this.getArguments();
+        if (bundle != null) {
+            waybill = bundle.getParcelable("waybill");
+        }
     }
 
     View.OnClickListener radioButtonClickListener = new View.OnClickListener() {
@@ -55,7 +62,7 @@ public class Refund extends Fragment {
                 case R.id.radio_6:
                     break;
             }
-        }*/
+        }
     };
 
     private class MyAdapter extends BaseAdapter{

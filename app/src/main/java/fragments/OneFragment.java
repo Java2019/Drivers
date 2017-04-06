@@ -41,6 +41,7 @@ public class OneFragment extends Fragment{
     private String login = "";
     private Intent intent;
     private View myFragmentView;
+    private Waybill waybill;
 
     public OneFragment() {
 
@@ -70,7 +71,7 @@ public class OneFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent intent = new Intent(getContext(), MainTab.class);
-                //intent.putExtra(WaybillData.EXTRA_WAYBILL, titleList.get(i));
+                intent.putExtra(MainTab.EXTRA_WAYBILL, titleList.get(i));
                 startActivity(intent);
             }
         });
@@ -123,10 +124,10 @@ public class OneFragment extends Fragment{
                     JSONObject document = documents.getJSONObject(i);
                     ArrayList<GoodTable> goodTables = new ArrayList<>();
                     JSONArray goods = document.getJSONArray("ТаблицаТоваров");
-                    /*for (int k = 0; k < goods.length(); k++) {
+                    for (int k = 0; k < goods.length(); k++) {
                         JSONObject good = goods.getJSONObject(k);
                         goodTables.add(new GoodTable(good.getString("Наименование"), good.getString("Количество")));
-                    }*/
+                    }
                     titleList.add(new Waybill(document.getString("ЮрАдрес"), document.getString("ЮрЛицо"),
                             document.getString("НомерДокумента"), document.getString("ВидДокумента"), goodTables));
                 }

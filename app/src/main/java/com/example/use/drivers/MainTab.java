@@ -41,7 +41,12 @@ public class MainTab extends AppCompatActivity {
     private String login = "";
     private Intent intent;
     private ImageButton imageButton;
+    private String type_doc;
+    private Waybill waybill;
+    private Fragment fragment;
+
     final int DIALOG = 1;
+    public static final String EXTRA_WAYBILL = "TYPE_DOC";
 
     @Override
     protected void onPrepareDialog(int id, Dialog dialog) {
@@ -86,6 +91,8 @@ public class MainTab extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_tabs);
 
+        waybill = getIntent().getParcelableExtra(EXTRA_WAYBILL);
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -113,19 +120,6 @@ public class MainTab extends AppCompatActivity {
                     case 0:
                         break;
                     case 1:
-                        intent = new Intent(getApplicationContext(), PrefActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putString("login", "");
-                        editor.commit();
-                        intent = new Intent(getApplicationContext(), Splash.class);
-                        startActivity(intent);
-                        finish();
                         break;
                 }
             }
@@ -149,12 +143,44 @@ public class MainTab extends AppCompatActivity {
             }
         });
     }
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.tv_settings:
+                intent = new Intent(getApplicationContext(), PrefActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_qiute:
+                prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("login", "");
+                editor.commit();
+                intent = new Intent(getApplicationContext(), Splash.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
+    }
 
     private void setupViewPager(ViewPager viewPager) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
-        adapter.addFrag(new Realization(), "Реализация");
-        adapter.addFrag(new Empowerment(), "Деньги");
-        adapter.addFrag(new Refund(), "Возврат");
+        switch (waybill.data4){
+            case "Реализация":
+                fragment = new Realization();
+                adapter.addFrag(fragment, "Реализация");
+                break;
+            case "Деньги":
+                fragment = new Empowerment();
+                adapter.addFrag(fragment, "Деньги");
+                break;
+            case "Возврат":
+                fragment = new Refund();
+                adapter.addFrag(fragment, "Возврат");
+                break;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("waybill", waybill);
+        fragment.setArguments(bundle);
+
         viewPager.setAdapter(adapter);
     }
 

@@ -46,7 +46,7 @@ public class MainActivityListAdapter extends ArrayAdapter<Waybill> {
             view.setBackgroundResource(R.drawable.rounded_view_grey);
         }else if (waybill.getDriver().equals("Возврат")) {
             view.setBackgroundResource(R.drawable.rounded_view_orange);
-        }else if (waybill.getDriver().equals("Доверенность")) {
+        }else if (waybill.getDriver().equals("Деньги")) {
             view.setBackgroundResource(R.drawable.rounded_view_green);
         }
         return view;

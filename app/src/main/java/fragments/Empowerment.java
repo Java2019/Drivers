@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import com.example.use.drivers.R;
 
@@ -23,14 +24,9 @@ public class Empowerment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.activity_empowerment, container, false);
-    }
+        myFragmentView = inflater.inflate(R.layout.activity_empowerment, container, false);
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        /*RadioButton radioButton1 = (RadioButton) myFragmentView.findViewById(R.id.radio_1);
+        RadioButton radioButton1 = (RadioButton) myFragmentView.findViewById(R.id.radio_1);
         radioButton1.setOnClickListener(radioButtonClickListener);
         RadioButton radioButton2 = (RadioButton) myFragmentView.findViewById(R.id.radio_2);
         radioButton2.setOnClickListener(radioButtonClickListener);
@@ -40,7 +36,9 @@ public class Empowerment extends Fragment {
         et = (EditText)myFragmentView.findViewById(R.id.et1);
         et.setVisibility(View.INVISIBLE);
 
+        return myFragmentView;
     }
+
     View.OnClickListener radioButtonClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
@@ -60,6 +58,12 @@ public class Empowerment extends Fragment {
                     et.setVisibility(View.INVISIBLE);
                     break;
             }
-        }*/
+        }
+    };
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
     };
 }

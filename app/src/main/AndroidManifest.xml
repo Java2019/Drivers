@@ -33,6 +33,8 @@
         </activity>
         <activity android:name=".MainTab">
         </activity>
+        <activity android:name=".Fueling">
+        </activity>
     </application>
 
 </manifest>

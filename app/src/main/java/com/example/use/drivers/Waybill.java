@@ -12,9 +12,12 @@ public class Waybill implements Parcelable{
     private String data1; // ЮрАдрес
     private String data2; // ЮрЛицо
     private String data3; // НомерДокумента
-    private String data4; // ВидДокумента
+    public String data4; // ВидДокумента
     private String data5; // Факт
     private ArrayList<GoodTable> goodTables = new ArrayList<>();
+
+    public Waybill() {
+    }
 
     public Waybill(String data1, String data2, String data3, String data4, ArrayList<GoodTable> goodTables) {
         this.data1 = data1;
