@@ -14,16 +14,21 @@ public class Waybill implements Parcelable{
     private String data3; // НомерДокумента
     public String data4; // ВидДокумента
     private String data5; // Факт
+    public String data6; // Телефон диспетчера
+    public String data7; // Телефон торговой точки
+
     private ArrayList<GoodTable> goodTables = new ArrayList<>();
 
     public Waybill() {
     }
 
-    public Waybill(String data1, String data2, String data3, String data4, ArrayList<GoodTable> goodTables) {
+    public Waybill(String data1, String data2, String data3, String data4, String data6, String data7, ArrayList<GoodTable> goodTables) {
         this.data1 = data1;
         this.data2 = data2;
         this.data3 = data3;
         this.data4 = data4;
+        this.data6 = data6;
+        this.data7 = data7;
         this.goodTables = goodTables;
     }
 
@@ -32,6 +37,8 @@ public class Waybill implements Parcelable{
         data2 = parcel.readString();
         data3 = parcel.readString();
         data4 = parcel.readString();
+        data6 = parcel.readString();
+        data7 = parcel.readString();
         int count = parcel.readInt();
         for (int i = 0; i < count; i++){
             String name = parcel.readString();
@@ -71,6 +78,8 @@ public class Waybill implements Parcelable{
         parcel.writeString(data2);
         parcel.writeString(data3);
         parcel.writeString(data4);
+        parcel.writeString(data6);
+        parcel.writeString(data7);
         parcel.writeInt(goodTables.size());
         //parcel.writeList(goodTables);
         for (GoodTable element : goodTables){

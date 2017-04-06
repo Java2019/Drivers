@@ -68,8 +68,13 @@ public class MainActivity extends AppCompatActivity {
                 drawlayout.closeDrawers();
                 switch (position){
                     case 0:
+                        intent = new Intent(getApplicationContext(), Fueling.class);
+                        startActivity(intent);
                         break;
                     case 1:
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "начат обмен", Toast.LENGTH_SHORT);
+                        toast.show();
                         break;
                 }
             }

@@ -67,10 +67,10 @@ public class MainTab extends AppCompatActivity {
                     tel = "123456";
                     break;
                 case 1: // торговая точка
-                    tel = "123456";
+                    tel = waybill.data7;
                     break;
                 case 2: // диспетчер
-                    tel = "123456";
+                    tel = waybill.data6;
                     break;
             }
             intent = new Intent();
@@ -118,8 +118,13 @@ public class MainTab extends AppCompatActivity {
                 drawlayout.closeDrawers();
                 switch (position){
                     case 0:
+                        intent = new Intent(getApplicationContext(), Fueling.class);
+                        startActivity(intent);
                         break;
                     case 1:
+                        Toast toast = Toast.makeText(getApplicationContext(),
+                                "начат обмен", Toast.LENGTH_SHORT);
+                        toast.show();
                         break;
                 }
             }

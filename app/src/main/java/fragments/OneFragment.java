@@ -129,7 +129,9 @@ public class OneFragment extends Fragment{
                         goodTables.add(new GoodTable(good.getString("Наименование"), good.getString("Количество")));
                     }
                     titleList.add(new Waybill(document.getString("ЮрАдрес"), document.getString("ЮрЛицо"),
-                            document.getString("НомерДокумента"), document.getString("ВидДокумента"), goodTables));
+                            document.getString("НомерДокумента"), document.getString("ВидДокумента"),
+                            document.getString("ТелефонДиспетчера"), document.getString("ТелефонТорговойТочки"),
+                            goodTables));
                 }
                 lv.setAdapter(adapter);
             } catch (JSONException e) {
