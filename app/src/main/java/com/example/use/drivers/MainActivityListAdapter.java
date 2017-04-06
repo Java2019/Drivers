@@ -1,7 +1,6 @@
 package com.example.use.drivers;
 
 import android.content.Context;
-import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,13 +43,12 @@ public class MainActivityListAdapter extends ArrayAdapter<Waybill> {
         data.setText(waybill.getNumber());
         car.setText(waybill.getCar());
         if (waybill.getDriver().equals("Реализация")){
-          //number.setTextColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+            view.setBackgroundResource(R.drawable.rounded_view_grey);
         }else if (waybill.getDriver().equals("Возврат")) {
-            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorAccent));
+            view.setBackgroundResource(R.drawable.rounded_view_orange);
         }else if (waybill.getDriver().equals("Доверенность")) {
-            view.setBackgroundColor(ContextCompat.getColor(getContext(), R.color.colorGreen));
+            view.setBackgroundResource(R.drawable.rounded_view_green);
         }
-
         return view;
     }
 }

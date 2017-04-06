@@ -5,9 +5,7 @@
     <string name="enter_text">Введите сумму</string>
     <string-array name="drawer_items">
         <item>Заправка</item>
-        <item>Настройки</item>
         <item>Передать данные</item>
-        <item>Выход</item>
     </string-array>
     <string-array name="dialog_items">
         <item>Тоговый представитель</item>
@@ -18,4 +16,6 @@
     <string name="pref_sync_summ">efaffa</string>
     <string name="pref_syncConnectionType">kj;lkj</string>
     <string name="items">ПОЗВОНИТЬ</string>
+    <string name="tv_name_set">Настройки</string>
+    <string name="tv_name_quite">Выйти</string>
 </resources>

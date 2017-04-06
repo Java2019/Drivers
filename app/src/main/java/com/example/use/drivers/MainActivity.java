@@ -25,7 +25,6 @@ public class MainActivity extends AppCompatActivity {
 
     public ArrayList<Waybill> titleList = new ArrayList<Waybill>();
     private MainActivityListAdapter adapter;
-    private ListView lv;
     private ListView mDrawerListView;
     private String[] mDrawerItem;
     private DrawerLayout drawlayout;
@@ -71,19 +70,6 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         break;
                     case 1:
-                        intent = new Intent(getApplicationContext(), PrefActivity.class);
-                        startActivity(intent);
-                        break;
-                    case 2:
-                        break;
-                    case 3:
-                        prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-                        SharedPreferences.Editor editor = prefs.edit();
-                        editor.putString("login", "");
-                        editor.commit();
-                        intent = new Intent(getApplicationContext(), Splash.class);
-                        startActivity(intent);
-                        finish();
                         break;
                 }
             }
@@ -108,6 +94,24 @@ public class MainActivity extends AppCompatActivity {
         adapter.addFrag(new OneFragment(), "План");
         adapter.addFrag(new TwoFragment(), "Выполнено");
         viewPager.setAdapter(adapter);
+    }
+
+    public void onClick(View view){
+        switch (view.getId()){
+            case R.id.tv_settings:
+                intent = new Intent(getApplicationContext(), PrefActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.tv_qiute:
+                prefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+                SharedPreferences.Editor editor = prefs.edit();
+                editor.putString("login", "");
+                editor.commit();
+                intent = new Intent(getApplicationContext(), Splash.class);
+                startActivity(intent);
+                finish();
+                break;
+        }
     }
 
     class ViewPagerAdapter extends FragmentPagerAdapter {
